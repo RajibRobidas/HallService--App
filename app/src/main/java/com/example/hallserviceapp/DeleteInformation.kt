@@ -53,10 +53,6 @@ class UpdateStudentActivity : ComponentActivity() {
 
 @Composable
 fun UpdateStudentScreen() {
-    val lightBlue = Color(0xFF8FABE7) // Light blue color
-    val gray = Color(0xFFBA6FBD)
-    val green = Color(0xFF43B83A)
-    val yellow = Color(0xFFC5B685)
 
     val context = LocalContext.current
 

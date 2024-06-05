@@ -10,7 +10,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,7 +17,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -95,7 +93,7 @@ fun FoodScreen() {
                 ) {
                     // Your other UI elements go here
                     Spacer(modifier = Modifier.height(25.dp)) // For spacing
-
+/*
                     Divider( // Add a divider line between student items
                         color = Color.White,
                         thickness = 10.dp,
@@ -105,10 +103,10 @@ fun FoodScreen() {
                             .background(Color.White, shape = RoundedCornerShape(10.dp))
 
                     )
-
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween,
+*/
+                    Column(
+                        verticalArrangement = Arrangement.SpaceBetween,
+                        horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(horizontal = 16.dp)
@@ -144,6 +142,8 @@ fun FoodScreen() {
                             )
                         }
 
+                        Spacer(modifier = Modifier.height(25.dp)) // For spacing
+
                         Column(
                             verticalArrangement = Arrangement.Center,
                             horizontalAlignment = Alignment.CenterHorizontally,
@@ -174,8 +174,76 @@ fun FoodScreen() {
                         }
 
                     }
-                    Spacer(modifier = Modifier.height(45.dp)) // For spacing
+                    Spacer(modifier = Modifier.height(60.dp)) // For spacing
 
+                    Column(
+                        verticalArrangement = Arrangement.SpaceBetween,
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp)
+
+                    ){
+                        Text(
+                            text = "Dining Menu",
+                            fontSize = 14.sp,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier//.padding(start = 16.dp)
+                                .clickable {
+                                    context.startActivity(
+                                        Intent(
+                                            context,
+                                            DiningActivity::class.java
+                                        )
+                                    )  // Change to the desired activity
+                                }
+                                .fillMaxWidth()
+                                .height(20.dp)
+                                .background(lightGoldB, shape = RoundedCornerShape(10.dp))
+
+                        )
+                        Spacer(modifier = Modifier.height(30.dp)) // For spacing
+
+                        Text(
+                            text = "Canteen Menu",
+                            fontSize = 14.sp,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier//.padding(start = 16.dp)
+                                .clickable {
+                                    context.startActivity(
+                                        Intent(
+                                            context,
+                                            CanteenActivity::class.java
+                                        )
+                                    )  // Change to the desired activity
+                                }
+                                .fillMaxWidth()
+                                .height(20.dp)
+                                .background(lightGoldB, shape = RoundedCornerShape(10.dp))
+
+                        )
+                        Spacer(modifier = Modifier.height(30.dp)) // For spacing
+
+                        Text(
+                            text = "Shop Menu",
+                            fontSize = 14.sp,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier//.padding(start = 16.dp)
+                                .clickable {
+                                    context.startActivity(
+                                        Intent(
+                                            context,
+                                            ShopActivity::class.java
+                                        )
+                                    )  // Change to the desired activity
+                                }
+                                .fillMaxWidth()
+                                .height(20.dp)
+                                .background(lightGoldB, shape = RoundedCornerShape(10.dp))
+
+                        )
+                    }
+/*
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Center,
@@ -204,8 +272,8 @@ fun FoodScreen() {
                         )
                         //Spacer(modifier = Modifier.width(12.dp)) // For spacing
                         Text(
-                            text = "Dining",
-                            fontSize = 34.sp,
+                            text = "Dining Menu",
+                            fontSize = 12.sp,
                             textAlign = TextAlign.Center,
                             modifier = Modifier//.padding(start = 16.dp)
                                 .fillMaxWidth()
@@ -240,8 +308,8 @@ fun FoodScreen() {
                                 .padding(10.dp)
                         )
                         Text(
-                            text = "Canteen",
-                            fontSize = 34.sp,
+                            text = "Canteen Menu",
+                            fontSize = 12.sp,
                             textAlign = TextAlign.Center,
                             modifier = Modifier//.padding(start = 16.dp)
                                 .fillMaxWidth()
@@ -275,14 +343,14 @@ fun FoodScreen() {
 
                         )
                         Text(
-                            text = "Food Shop",
-                            fontSize = 34.sp,
+                            text = "Shop Menu",
+                            fontSize = 12.sp,
                             textAlign = TextAlign.Center,
                             modifier = Modifier//.padding(start = 16.dp)
                                 .fillMaxWidth()
                         )
                     }
-
+*/
                 }
             }
         }

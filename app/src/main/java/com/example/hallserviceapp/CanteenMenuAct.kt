@@ -1,12 +1,10 @@
 package com.example.hallserviceapp
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,19 +18,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.hallserviceapp.ui.theme.HallServiceAppTheme
 
-class UploadNoticeActivity : ComponentActivity() {
+class CanteenActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -41,7 +35,7 @@ class UploadNoticeActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    UploadNoticeScreen()
+                    CanteenScreen()
                 }
             }
         }
@@ -49,11 +43,7 @@ class UploadNoticeActivity : ComponentActivity() {
 }
 
 @Composable
-fun UploadNoticeScreen() {
-    val lightBlue = Color(0xFF8FABE7)
-    val yellow = Color(0xFF40E48A)
-    val gray = Color(0xFFE7E3E7)
-    val context = LocalContext.current
+fun CanteenScreen() {
 
     Box(
         modifier = Modifier
@@ -68,50 +58,49 @@ fun UploadNoticeScreen() {
         )
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                //.background(lightBlue)
-                .padding(16.dp),
+                .fillMaxSize(),
+                //.background(Color(0xFF8FABE7)), // Custom background color
+            //.padding(8.dp),
+            //horizontalAlignment = Alignment.CenterHorizontally
             verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
 
-            HeaderSectionAll("Upload Notice")
+            ) {
+            Headlineee("Canteen") // You can reuse the HeaderSection from DiningActivity or create a new one
 
-            Spacer(modifier = Modifier.height(160.dp))
+            MealSection("Breakfast", "8:00 am", "Khichuri - Egg - Dal")
+            MealSection("Lunch", "12:30 pm", "Chicken, Dal, Fish, Egg, Vegetable, Murighanto")
+            MealSection("Dinner", "8:00 pm", "Chicken, Dal, Fish, Egg, Vegetable, Murighanto")
+            SpecialMealSection("Special Meal", "10:00 pm", "Chicken-Khichuri")
+            SpecialSection("Every Friday - Special biryani")
 
-            OptionText("Upload Text File", Color.LightGray) {
-                context.startActivity(Intent(context, NoticeTextActivity::class.java))
-            }
-
-            Spacer(modifier = Modifier.height(20.dp))
-            /*
-            OptionText("Upload Notice File", gray) {
-                context.startActivity(Intent(context, NoticeFileTextActivity::class.java))
-            }
-             */
         }
     }
 }
-
 @Composable
-fun OptionText(text: String, backgroundColor: Color, onClick: () -> Unit) {
-    Text(
-        text = text,
-        fontSize = 24.sp,
-        textAlign = TextAlign.Center,
+fun SpecialMealSection(specialMealName: String, time: String, description: String) {
+    Column(
         modifier = Modifier
+            .padding(16.dp)
             .fillMaxWidth()
-            .padding(horizontal = 20.dp, vertical = 12.dp)
-            .background(backgroundColor, shape = RoundedCornerShape(16.dp))
-            .height(60.dp)
-            .clickable(onClick = onClick)
-    )
+            .background(Color.LightGray, shape = RoundedCornerShape(10.dp))
+            .padding(16.dp)
+    ) {
+        Text(
+            text = "$specialMealName: $time",
+            style = MaterialTheme.typography.bodyMedium,
+            color = Color.Black
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(
+            text = description,
+            style = MaterialTheme.typography.titleMedium
+        )
+    }
 }
 
+// Preview
 @Preview(showBackground = true)
 @Composable
-fun UploadNoticePreview() {
-    HallServiceAppTheme {
-        UploadNoticeScreen()
-    }
+fun CanteenScreenPreview() {
+    CanteenScreen()
 }

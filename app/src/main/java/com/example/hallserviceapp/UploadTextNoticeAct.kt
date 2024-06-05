@@ -98,9 +98,9 @@ fun NoticeTextScreen() {
             HeaderSectionAl("TextNotice")
             Spacer(modifier = Modifier.height(20.dp))
 
-            InputTitleNT(titleState, "Enter complaint title") { titleState = it }
+            InputTitleNT(titleState, "Enter notice title") { titleState = it }
             Spacer(modifier = Modifier.height(15.dp))
-            InputFieldNT(textState, "Write your complaint here") { textState = it }
+            InputFieldNT(textState, "Write notice here") { textState = it }
             Spacer(modifier = Modifier.height(16.dp))
 
             Row(

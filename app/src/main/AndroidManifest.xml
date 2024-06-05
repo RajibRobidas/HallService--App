@@ -17,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HallServiceApp"
         tools:targetApi="31">
+
         <activity
             android:name=".DynamicFoodActivity"
             android:exported="false"

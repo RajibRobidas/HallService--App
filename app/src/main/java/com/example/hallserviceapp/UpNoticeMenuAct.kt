@@ -1,10 +1,13 @@
 package com.example.hallserviceapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -21,12 +24,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.hallserviceapp.ui.theme.HallServiceAppTheme
 
-class DiningActivity : ComponentActivity() {
+class UploadNoticeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -35,7 +41,7 @@ class DiningActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    DiningScreen()
+                    UploadNoticeScreen()
                 }
             }
         }
@@ -43,7 +49,11 @@ class DiningActivity : ComponentActivity() {
 }
 
 @Composable
-fun DiningScreen() {
+fun UploadNoticeScreen() {
+    val lightBlue = Color(0xFF8FABE7)
+    val yellow = Color(0xFF40E48A)
+    val gray = Color(0xFFE7E3E7)
+    val context = LocalContext.current
 
     Box(
         modifier = Modifier
@@ -59,63 +69,49 @@ fun DiningScreen() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                //.background(Color(0xFF8FABE7)) // Background color of the entire screen
+                //.background(lightBlue)
                 .padding(16.dp),
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Headlineee("Dining")
-            MealSection("Breakfast", "8:00 am", "Khichuri - Egg - Dal")
-            MealSection("Lunch", "12:30 pm", "Chicken, Fish, Egg, Vegetable, Murighanto, Dal")
-            MealSection("Dinner", "8:00 pm", "Chicken, Fish, Egg, Vegetable, Murighanto, Dal")
-            SpecialSection("Every Friday special biryani are available")
+
+            HeaderSectionAll("Upload Notice")
+
+            Spacer(modifier = Modifier.height(160.dp))
+
+            OptionText("Upload Text File", Color.LightGray) {
+                context.startActivity(Intent(context, NoticeTextActivity::class.java))
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+/*
+            OptionText("Upload Notice File", Color.LightGray) {
+                context.startActivity(Intent(context, NoticeFileTextActivity::class.java))
+            }
+*/
         }
     }
 }
 
 @Composable
-fun MealSection(mealName: String, time: String, menu: String) {
-    Column(
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth()
-            .background(Color.LightGray, shape = RoundedCornerShape(10.dp))
-            .padding(16.dp)
-    ) {
-        Text(
-            text = "$mealName: $time",
-            style = MaterialTheme.typography.bodyMedium
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            text = menu,
-            style = MaterialTheme.typography.titleMedium
-        )
-    }
-}
-
-
-@Composable
-fun SpecialSection(specialInfo: String) {
-    Box(
+fun OptionText(text: String, backgroundColor: Color, onClick: () -> Unit) {
+    Text(
+        text = text,
+        fontSize = 24.sp,
+        textAlign = TextAlign.Center,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
-            .background(Color.LightGray, shape = RoundedCornerShape(10.dp))
-            .padding(16.dp)
-    ) {
-        Text(
-            text = specialInfo,
-            style = MaterialTheme.typography.titleMedium
-            //style = MaterialTheme.typography.headlineSmall,
-            //textAlign = TextAlign.Center,
-            //color = Color.Black
-        )
-    }
+            .padding(horizontal = 20.dp, vertical = 12.dp)
+            .background(backgroundColor, shape = RoundedCornerShape(16.dp))
+            .height(60.dp)
+            .clickable(onClick = onClick)
+    )
 }
-
 
 @Preview(showBackground = true)
 @Composable
-fun DiningScreenPreview() {
-    DiningScreen()
+fun UploadNoticePreview() {
+    HallServiceAppTheme {
+        UploadNoticeScreen()
+    }
 }

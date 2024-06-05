@@ -132,13 +132,16 @@ fun FrontAdminScreen() {
                             Toast.makeText(context, "Please give Email & password", Toast.LENGTH_SHORT).show()
                         }
                         else {
+
                             // Check if the email is the admin email
                             if (username == "rajibrobidas22222@gmail.com" || username == "rajib99@student.sust.edu"|| username == "pradip105@student.sust.edu") {
+                                //
                                 isLoading = true
                                 auth.signInWithEmailAndPassword(username, password)
                                     .addOnCompleteListener { task ->
                                         isLoading = false  // Hide progress indicator
                                         if (task.isSuccessful) {
+
                                             if(username == "rajibrobidas22222@gmail.com" ){
                                                 context.startActivity(Intent(context, AdminActivity::class.java))
                                             }
@@ -151,7 +154,10 @@ fun FrontAdminScreen() {
                                             else {
                                                 context.startActivity(Intent(context, FrontAdminActivity::class.java))
                                             }
+
+
                                             //context.startActivity(Intent(context, AdminActivity::class.java))
+
                                         } else {
                                             Toast.makeText(context, "Login failed", Toast.LENGTH_SHORT).show()
                                         }
@@ -159,6 +165,8 @@ fun FrontAdminScreen() {
                             } else {
                                 Toast.makeText(context, "Admin login only", Toast.LENGTH_SHORT).show()
                             }
+
+
                         }
                     },
                     modifier = Modifier.fillMaxWidth()
@@ -180,6 +188,26 @@ fun FrontAdminScreen() {
                         )
                     }
                 }
+
+                /*
+                Spacer(modifier = Modifier.height(20.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center // Center the items
+                ) {
+                    Text(
+                        text = "Don't have account? SignUp.",
+                        color = Color.White,
+                        fontSize = 16.sp,
+                        modifier = Modifier
+                            .clickable {
+                                context.startActivity(Intent(context, AdminSignUpAct::class.java))
+                            }
+                            .padding(vertical = 16.dp)
+                    )
+                }
+                */
             }
         }
 

@@ -97,8 +97,8 @@ fun ComplaintsScreen() {
 @Composable
 fun WriteSection() {
     val yellow = Color(0xFFC5B685)
-    var titleState by remember { mutableStateOf(TextFieldValue("Enter complaint title")) }
-    var textState by remember { mutableStateOf(TextFieldValue("Type your complaint here")) }
+    var titleState by remember { mutableStateOf(TextFieldValue()) }
+    var textState by remember { mutableStateOf(TextFieldValue()) }
     val context = LocalContext.current
     var isUploading by remember { mutableStateOf(false) }
     val lightBlue = Color(0xFF8FABE7) // Light blue color
@@ -114,7 +114,7 @@ fun WriteSection() {
     ) {
         InputTitle(titleState, "Enter complaint title") { titleState = it }
         Spacer(modifier = Modifier.height(8.dp))
-        InputField(textState, "Write your complaint here") { textState = it }
+        InputField(textState, "Write complaint here") { textState = it }
         Spacer(modifier = Modifier.height(16.dp))
         Row(
             modifier = Modifier
